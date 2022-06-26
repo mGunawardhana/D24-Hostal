@@ -1,8 +1,6 @@
 package controller;
 
 import bo.BOFactory;
-import bo.Impl.RoomBOImpl;
-import bo.Impl.StudentBOImpl;
 import bo.ReserveBO;
 import bo.RoomBO;
 import bo.StudentBO;
@@ -12,7 +10,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import dto.ReserveDTO;
 import dto.RoomDTO;
 import dto.StudentDTO;
-import entity.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import util.LoadFXMLFile;
+import util.UILoader;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -265,7 +262,7 @@ public class StudentRegFormController {
     }
 
     public void goToMain(MouseEvent mouseEvent) throws IOException {
-        LoadFXMLFile.load("MainForm", contextStd);
+        UILoader.load("MainForm", contextStd);
     }
 
     public void loadStudents() throws Exception {

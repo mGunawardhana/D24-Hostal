@@ -63,7 +63,7 @@
     -fx-background-color: white;
 }
 .table-view .table-row-cell:selected{
-    -fx-background-color: linear-gradient(to right,#32ff7e, #fffa65);
+    -fx-background-color:linear-gradient(to right, rgba(217, 128, 250,1.0), rgba(15, 93, 255, 0.39));
 }
 
 .table-view .table-row-cell:selected *{

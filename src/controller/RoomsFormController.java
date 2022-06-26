@@ -13,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import util.LoadFXMLFile;
+import util.UILoader;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -110,7 +110,7 @@ public class RoomsFormController {
     }
 
     public void backToMain(MouseEvent mouseEvent) throws IOException {
-        LoadFXMLFile.load("MainForm", contextPro);
+        UILoader.load("MainForm", contextPro);
     }
 
     public void setRoomID() throws SQLException, ClassNotFoundException {

@@ -48,6 +48,11 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        // student id eken eyage reserve eka hyganna oni
+        // reserve eken adala room no eka ganna haki
+        //a room number eke dn thiyena quantity ekata ekak ekathu karanna
+
+
         Query query = session.createQuery("DELETE FROM Student WHERE studentID=:id");
         query.setParameter("id", s);
 
