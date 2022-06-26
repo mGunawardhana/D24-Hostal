@@ -243,8 +243,7 @@ public class StudentRegFormController {
         List<RoomDTO> all = roomBO.findAll();
         for (RoomDTO roomDTO : all) {
             if (roomDTO.getRoomID().equals(cmpProgram.getSelectionModel().getSelectedItem())) {
-                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()));
-                return;
+                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()-Integer.parseInt(key_money.getText())));
             }
         }
     }
