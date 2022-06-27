@@ -2,6 +2,7 @@ package controller;
 
 import bo.*;
 import com.jfoenix.controls.JFXButton;
+import dto.ReserveDTO;
 import dto.UserDTO;
 import entity.User;
 import javafx.collections.FXCollections;
@@ -138,11 +139,34 @@ public class UserPrivilegesController {
     }
 
     public void removeOnAction(ActionEvent actionEvent) {
+        try {
+            List<UserDTO> all = userBO.findAll();//==============================================
+            all.removeIf(userDTO -> !userDTO.getUserID().equals(UserID.getText()));
 
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                boolean bool = false;
+                for (UserDTO userDTO : all) {
+                    bool = userBO.delete(userDTO.getUserID());//----------------
+                }
+                if (bool && userBO.delete(userIDTxt.getText())) {
+
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Message");
+                    alert2.setContentText("Saved..");
+                    alert2.show();
+
+                    loadUser();
+                    UserTbl.refresh();
+                }
+            }
+        } catch (Exception ignored) {}
     }
 
     public void BackOnAction(ActionEvent actionEvent) throws IOException {
-        UILoader.load("MainForm",context);
+        UILoader.load("MainForm", context);
     }
 }
