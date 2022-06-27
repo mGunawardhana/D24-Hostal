@@ -1,5 +1,7 @@
 package bo;
 
+import dto.RoomDTO;
+import dto.StudentDTO;
 import dto.UserDTO;
 
 import java.util.List;

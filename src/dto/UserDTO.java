@@ -12,6 +12,9 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 
 public class UserDTO {
+    @Id
+    private int UserID;
+
     private String userName;
     private String password;
 }

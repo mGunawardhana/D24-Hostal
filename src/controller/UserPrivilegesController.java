@@ -1,21 +1,19 @@
 package controller;
 
 import bo.BOFactory;
-import bo.RoomBO;
 import bo.UserBO;
-import com.jfoenix.controls.JFXButton;
-import dto.RoomDTO;
 import dto.UserDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class UserPrivilegesController {
 
@@ -25,133 +23,43 @@ public class UserPrivilegesController {
     public TextField userNameTxt;
     public PasswordField passwordTxt;
     public TableView<UserDTO> UserTbl;
-    public TableColumn<UserDTO, String> userNameCol;
-    public TableColumn<UserDTO, String> passwordCol;
-    ObservableList<UserDTO> obList = FXCollections.observableArrayList();
+    public TableColumn userNameCol;
+    public TableColumn passwordCol;
+    public AnchorPane context;
+    public TextField userID;
+    public TableColumn UserID;
+    ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
     int rowNumber;
 
     public void initialize() {
-        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
-
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        UserID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
+        UserTbl.refresh();
         try {
-            loadTable();
-            UserTbl.refresh();
+            loadUser();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        UserTbl.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            rowNumber = (Integer) newValue;
-//            btnadd.setDisable(true);
-
-
-            try {
-                setUserData(obList.get(rowNumber).getPassword());
-            } catch (Exception e) {
-                new Alert(Alert.AlertType.WARNING, "Error").show();
-            }
-        });
-
 
     }
 
-    private void setUserData(String password) throws Exception {
+    public void loadUser() throws Exception {
+        userObList.clear();
         List<UserDTO> all = userBO.findAll();
         for (UserDTO userDTO : all) {
-            if (userDTO.getPassword().equals(password)) {
-//============================================================================================================================================
-                passwordTxt.setText(userDTO.getPassword());
-                userNameTxt.setText(String.valueOf(userDTO.getUserName()));//***************************************
-
-//============================================================================================================================================
-
-            }
+            userObList.add(userDTO);
         }
+        UserTbl.setItems(userObList);
+
+
     }
 
-    public void loadTable() {
-        obList.clear();
-        List<UserDTO> all = userBO.findAll();
 
-        for (UserDTO userDTO : all) {
-            obList.add(userDTO);
-        }
-        UserTbl.setItems(obList);
-    }
-
-//    public void addRoom(MouseEvent mouseEvent) {
-//        if (userNameTxt.getText().trim().isEmpty() || passwordTxt.getText().trim().isEmpty()) {
-//            new Alert(Alert.AlertType.WARNING, "Empty text Fields").show();
-//        } else {
-//            UserDTO userDTO = new UserDTO(
-//                    userNameTxt.getText(),
-//                    passwordTxt.getText()
-//            );
-//
-//
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            Optional<ButtonType> result = alert.showAndWait();
-//
-//            if (result.get() == ButtonType.OK) {
-//                try {
-//                    if (userBO.add(userDTO)) {
-//                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-//                        alert2.setTitle("Message");
-//                        alert2.setContentText("Saved..");
-//                        alert2.show();
-//
-//                        loadTable();
-//                        UserTbl.refresh();
-////                        clear();
-//
-//                    } else {
-//                        new Alert(Alert.AlertType.WARNING, "Try Again..").show();
-//                    }
-//                } catch (Exception e) {
-//                    new Alert(Alert.AlertType.WARNING, e.getClass().getSimpleName()).show();
-//                }
-//            }
-//        }
-  //  }
 
     public void addOnAction(ActionEvent actionEvent) {
 
-        if (userNameTxt.getText().trim().isEmpty() || passwordTxt.getText().trim().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Empty text Fields").show();
-        } else {
-            UserDTO userDTO = new UserDTO(
-                    userNameTxt.getText(),
-                    passwordTxt.getText()
-            );
-
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.get() == ButtonType.OK) {
-                try {
-                    if (userBO.add(userDTO)) {
-                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                        alert2.setTitle("Message");
-                        alert2.setContentText("Saved..");
-                        alert2.show();
-
-                        try {
-                            loadTable();
-                            UserTbl.refresh();
-                        }catch (NullPointerException e){e.printStackTrace();}
-
-//                        clear();
-
-                    } else {
-                        new Alert(Alert.AlertType.WARNING, "Try Again..").show();
-                    }
-                } catch (Exception e) {
-                   e.printStackTrace();
-                }
-            }
-        }
     }
 
     public void updateOnAction(ActionEvent actionEvent) {

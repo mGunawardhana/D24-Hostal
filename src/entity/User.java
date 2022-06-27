@@ -14,7 +14,11 @@ import javax.persistence.Id;
 
 @Entity
 public class User implements SuperEntity{
-    private String userName;
     @Id
+    private int UserID;
+    private String userName;
+
     private String password;
+
+
 }
