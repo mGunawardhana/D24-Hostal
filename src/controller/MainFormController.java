@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
@@ -15,5 +16,9 @@ public class MainFormController {
 
     public void openProgramDetails(MouseEvent mouseEvent) throws IOException {
         UILoader.load("RoomForm", context);
+    }
+
+    public void userOnAction(ActionEvent actionEvent) throws IOException {
+        UILoader.load("UserPrivilegesForm",context);
     }
 }

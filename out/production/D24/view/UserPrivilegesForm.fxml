@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="385.0" prefWidth="498.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserPrivilegesController">
+   <children>
+      <TableView fx:id="UserTbl" layoutX="50.0" layoutY="157.0" prefHeight="200.0" prefWidth="402.0">
+        <columns>
+          <TableColumn fx:id="userNameCol" prefWidth="75.0" text="User Name" />
+          <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TextField fx:id="userNameTxt" layoutX="50.0" layoutY="67.0" promptText="User Name" />
+      <PasswordField fx:id="passwordTxt" layoutX="265.0" layoutY="67.0" promptText="Password" />
+      <AnchorPane layoutY="26.0" prefHeight="17.0" prefWidth="498.0" style="-fx-background-color: #34495e;" />
+      <AnchorPane layoutY="360.0" prefHeight="17.0" prefWidth="498.0" style="-fx-background-color: #34495e;" />
+      <JFXButton fx:id="addOnAction" buttonType="RAISED" layoutX="223.0" layoutY="107.0" style="-fx-background-color: #34495e;" text="Add" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="updateOnAction" buttonType="RAISED" layoutX="285.0" layoutY="107.0" style="-fx-background-color: #34495e;" text="Update" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="removeOnAction" buttonType="RAISED" layoutX="372.0" layoutY="107.0" style="-fx-background-color: #34495e;" text="Remove" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

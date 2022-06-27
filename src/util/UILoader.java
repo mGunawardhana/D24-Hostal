@@ -22,5 +22,6 @@ public class UILoader {
         Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) context.getScene().getWindow();
         window.setScene(new Scene(load));
+        window.centerOnScreen();
     }
 }
