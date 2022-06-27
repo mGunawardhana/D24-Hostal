@@ -10,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import util.UILoader;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,10 +54,10 @@ public class UserPrivilegesController {
 
         UserTbl.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             userRowNumber = (Integer) newValue;
-//            removeBtn.setDisable(false);
-//            addBtn.setDisable(false);
-//            updateBtn.setDisable(true);
-//
+            removeBtn.setDisable(false);
+            addBtn.setDisable(true);
+            updateBtn.setDisable(false);
+
 
             try {
                 setUserData(userObList.get(userRowNumber).getUserID());
@@ -138,5 +140,9 @@ public class UserPrivilegesController {
     public void removeOnAction(ActionEvent actionEvent) {
 
 
+    }
+
+    public void BackOnAction(ActionEvent actionEvent) throws IOException {
+        UILoader.load("MainForm",context);
     }
 }

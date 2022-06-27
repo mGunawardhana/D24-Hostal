@@ -207,11 +207,7 @@ public class StudentRegFormController {
                 genderTxt.setText(studentDTO.getGender());
                 key_money.setText(String.valueOf(studentDTO.getKeyMoney()));
                 lbsID.setText(studentDTO.getStudentID());
-
-
             }
-
-
         }
     }
 
