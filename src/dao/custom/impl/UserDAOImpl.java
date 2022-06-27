@@ -3,6 +3,9 @@ package dao.custom.impl;
 import dao.custom.UserDAO;
 import entity.SuperEntity;
 import entity.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import util.FactoryConfiguration;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +13,14 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
     @Override
     public boolean add(User entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(entity);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

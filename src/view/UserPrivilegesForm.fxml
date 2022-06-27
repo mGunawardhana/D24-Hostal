@@ -23,17 +23,17 @@
       <PasswordField fx:id="passwordTxt" layoutX="265.0" layoutY="46.0" promptText="Password" />
       <AnchorPane layoutY="5.0" prefHeight="17.0" prefWidth="498.0" style="-fx-background-color: #34495e;" />
       <AnchorPane layoutY="360.0" prefHeight="17.0" prefWidth="498.0" style="-fx-background-color: #34495e;" />
-      <JFXButton fx:id="addOnAction" buttonType="RAISED" layoutX="223.0" layoutY="86.0" style="-fx-background-color: #34495e;" text="Add" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="223.0" layoutY="86.0" onAction="#addOnAction" style="-fx-background-color: #34495e;" text="Add" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="updateOnAction" buttonType="RAISED" layoutX="285.0" layoutY="86.0" style="-fx-background-color: #34495e;" text="Update" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="285.0" layoutY="86.0" onAction="#updateOnAction" style="-fx-background-color: #34495e;" text="Update" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="removeOnAction" buttonType="RAISED" layoutX="372.0" layoutY="86.0" style="-fx-background-color: #34495e;" text="Remove" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="372.0" layoutY="86.0" onAction="#removeOnAction" style="-fx-background-color: #34495e;" text="Remove" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
