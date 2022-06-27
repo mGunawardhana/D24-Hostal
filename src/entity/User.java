@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class User implements SuperEntity{
     @Id
-    private int UserID;
+    private String UserID;
     private String userName;
 
     private String password;

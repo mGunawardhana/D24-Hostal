@@ -6,15 +6,10 @@ import javax.persistence.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@ToString
-@EqualsAndHashCode
+@Data
 
 public class UserDTO {
-    @Id
-    private int UserID;
-
+    private String UserID;
     private String userName;
     private String password;
 }

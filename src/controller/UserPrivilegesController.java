@@ -27,12 +27,13 @@ public class UserPrivilegesController {
     public TableColumn<User, String> userNameCol;
     public TableColumn<User, String> passwordCol;
     public AnchorPane context;
-    public TextField userID;
+
     public TableColumn<User, String> UserID;
     public JFXButton addBtn;
     public JFXButton updateBtn;
     public JFXButton removeBtn;
-    int stRowNumber;
+    public TextField userIDTxt;
+    int userRowNumber;
 
     ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
     int rowNumber;
@@ -47,9 +48,42 @@ public class UserPrivilegesController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //======================================================
+
+        UserTbl.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            userRowNumber = (Integer) newValue;
+//            removeBtn.setDisable(false);
+//            addBtn.setDisable(false);
+//            updateBtn.setDisable(true);
+//
+
+            try {
+                setUserData(userObList.get(userRowNumber).getUserID());
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.WARNING, "Error").show();
+            }
+        });
 
 
     }
+
+    //================================================================
+    private void setUserData(String userID) throws Exception {
+        List<UserDTO> userDTOS = userBO.findAll();
+        for (UserDTO userDTO : userDTOS) {
+            if (userDTO.getUserID().equals(userID)) {
+                userIDTxt.setText(userDTO.getUserID());
+                userNameTxt.setText(userDTO.getUserName());
+                passwordTxt.setText(userDTO.getPassword());
+
+            }
+
+
+        }
+    }
+
+    //================================================================
+
 
     public void loadUser() throws Exception {
         userObList.clear();
@@ -67,7 +101,7 @@ public class UserPrivilegesController {
 
     public void updateOnAction(ActionEvent actionEvent) {
         UserDTO userDTO = new UserDTO(
-                Integer.parseInt(userID.getText()),
+                userIDTxt.getText(),
                 userNameTxt.getText(),
                 passwordTxt.getText()
 
@@ -86,7 +120,7 @@ public class UserPrivilegesController {
                     alert2.show();
 
 
-                    userObList.remove(stRowNumber);
+                    userObList.remove(userRowNumber);
                     userObList.add(userDTO);
                     UserTbl.refresh();
 
