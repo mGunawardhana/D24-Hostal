@@ -52,11 +52,17 @@ public class StudentDAOImpl implements StudentDAO {
         // reserve eken adala room no eka ganna haki
         //a room number eke dn thiyena quantity ekata ekak ekathu karanna
 
+//        Student student = studentDAO.find(reserveDTO.getSID());
+//        Room room = roomDAO.find(reserveDTO.getRID());
+//        room.setRoomQty( room.getRoomQty() - 1);
+//        roomDAO.update(room);
 
         Query query = session.createQuery("DELETE FROM Student WHERE studentID=:id");
         query.setParameter("id", s);
 
         if (query.executeUpdate() > 0) {
+
+
             bool = true;
         }
 

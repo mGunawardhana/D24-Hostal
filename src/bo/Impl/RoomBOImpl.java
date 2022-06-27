@@ -3,6 +3,7 @@ package bo.Impl;
 import bo.RoomBO;
 import controller.StudentRegFormController;
 import dao.DAOFactory;
+import dao.custom.ReserveDAO;
 import dao.custom.RoomDAO;
 import dao.custom.impl.RoomDAOImpl;
 import dto.RoomDTO;
@@ -61,6 +62,8 @@ public class RoomBOImpl implements RoomBO {
     @Override
     public boolean delete(String id) throws Exception {
         return roomDAO.delete(id);
+
+
 //        return roomDAO.update(new Room(
 //                roomDTO.getRoomID(),
 //                roomDTO.getRoomType(),

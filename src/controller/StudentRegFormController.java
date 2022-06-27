@@ -128,7 +128,7 @@ public class StudentRegFormController {
                 RoomDTO roomDTO = roomBO.find(newValue);
 
                 StudentDTO studentDTO = studentBO.find(oldValue);
-                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()-studentDTO.getKeyMoney()));
+                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent() - studentDTO.getKeyMoney()));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -240,7 +240,7 @@ public class StudentRegFormController {
         List<RoomDTO> all = roomBO.findAll();
         for (RoomDTO roomDTO : all) {
             if (roomDTO.getRoomID().equals(cmpProgram.getSelectionModel().getSelectedItem())) {
-                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()-Integer.parseInt(key_money.getText())));
+                txtFee.setText(String.valueOf(roomDTO.getMonthlyRent() - Integer.parseInt(key_money.getText())));
             }
         }
     }
@@ -312,7 +312,8 @@ public class StudentRegFormController {
                             reserveBO.generateNewRoomId(),
                             lbsID.getText(),
                             cmpProgram.getSelectionModel().getSelectedItem(),
-                            lbRegDate.getText(), Double.parseDouble(key_money.getText()
+                            lbRegDate.getText(),
+                            Double.parseDouble(txtFee.getText()
 
                     ));
                 } catch (SQLException | ClassNotFoundException throwables) {
@@ -510,7 +511,6 @@ public class StudentRegFormController {
 
                         }
                     }
-
 
 
                     List<String> ids = new ArrayList<>();
