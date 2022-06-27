@@ -2,28 +2,29 @@ package dao.custom.impl;
 
 import dao.custom.UserDAO;
 import entity.SuperEntity;
+import entity.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     @Override
-    public boolean add(SuperEntity entity) throws Exception {
+    public boolean add(User entity) throws Exception {
         return false;
     }
 
     @Override
-    public boolean update(SuperEntity entity) throws Exception {
+    public boolean update(User entity) throws Exception {
         return false;
     }
 
     @Override
-    public boolean delete(Object o) throws Exception {
+    public boolean delete(String s) throws Exception {
         return false;
     }
 
     @Override
-    public SuperEntity find(Object o) throws Exception {
+    public User find(String s) throws Exception {
         return null;
     }
 
