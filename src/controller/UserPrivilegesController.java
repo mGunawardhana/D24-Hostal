@@ -1,33 +1,45 @@
 package controller;
 
-import bo.BOFactory;
-import bo.UserBO;
+import bo.*;
+import com.jfoenix.controls.JFXButton;
+import com.sun.xml.internal.bind.v2.TODO;
+import dto.ReserveDTO;
+import dto.RoomDTO;
+import dto.StudentDTO;
 import dto.UserDTO;
+import entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserPrivilegesController {
-
+    private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.STUDENT);
+    private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
+    private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
 
 
     public TextField userNameTxt;
     public PasswordField passwordTxt;
     public TableView<UserDTO> UserTbl;
-    public TableColumn userNameCol;
-    public TableColumn passwordCol;
+    public TableColumn<User, String> userNameCol;
+    public TableColumn<User, String> passwordCol;
     public AnchorPane context;
     public TextField userID;
-    public TableColumn UserID;
+    public TableColumn<User, String> UserID;
+    public JFXButton addBtn;
+    public JFXButton updateBtn;
+    public JFXButton removeBtn;
+    int stRowNumber;
+
     ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
     int rowNumber;
 
@@ -52,10 +64,7 @@ public class UserPrivilegesController {
             userObList.add(userDTO);
         }
         UserTbl.setItems(userObList);
-
-
     }
-
 
 
     public void addOnAction(ActionEvent actionEvent) {
@@ -63,8 +72,77 @@ public class UserPrivilegesController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        UserDTO userDTO = new UserDTO(
+                Integer.parseInt(userID.getText()),
+                userNameTxt.getText(),
+                passwordTxt.getText()
+
+        );
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Optional<ButtonType> result = alert.showAndWait();
+
+
+        if (result.get() == ButtonType.OK) {
+            try {
+                if (userBO.update(userDTO)) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Message");
+                    alert2.setContentText("Saved..");
+                    alert2.show();
+
+
+                    userObList.remove(stRowNumber);
+                    userObList.add(userDTO);
+                    UserTbl.refresh();
+
+
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Try Again..").show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void removeOnAction(ActionEvent actionEvent) {
+
+
+    }
+
+    public void searchOnAction(ActionEvent actionEvent) {
+        if (userID.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Empty").show();
+        } else {
+            try {
+                removeBtn.setDisable(false);
+                UserDTO userDTO = userBO.find(UserID.getText());
+                List<UserDTO> userDTOS = userBO.findAll();//==========================
+                if (userDTO != null) {
+
+                    /*
+
+                    TODO -> this place end at 3:11 PM
+                     problem is POWER OUTAGE IN THIS AREA
+
+                      */
+
+
+                    userID.clear();
+                    userID.setText(String.valueOf(userDTO.getUserID()));
+                    userNameTxt.setText(userDTO.getUserName());
+                    passwordTxt.setText(userDTO.getPassword());
+
+
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Data not found").show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }
     }
 }
