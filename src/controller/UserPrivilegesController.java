@@ -2,7 +2,6 @@ package controller;
 
 import bo.*;
 import com.jfoenix.controls.JFXButton;
-import dto.ReserveDTO;
 import dto.UserDTO;
 import entity.User;
 import javafx.collections.FXCollections;
@@ -99,10 +98,45 @@ public class UserPrivilegesController {
 
 
     public void addOnAction(ActionEvent actionEvent) {
+        if (userIDTxt.getText().trim().isEmpty() || userNameTxt.getText().trim().isEmpty() || passwordTxt.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Empty text Fields").show();
+        } else {
+            UserDTO userDTO = new UserDTO(
+                    userIDTxt.getText(),
+                    userNameTxt.getText(),
+                    passwordTxt.getText()
+            );
+
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                try {
+                    if (userBO.add(userDTO)) {
+                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                        alert2.setTitle("Message");
+                        alert2.setContentText("Saved..");
+                        alert2.show();
+
+//                        setRoomID();
+                        UserTbl.refresh();
+                        loadUser();
+//                        clear();
+
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Try Again..").show();
+                    }
+                } catch (Exception e) {
+                    new Alert(Alert.AlertType.WARNING, e.getClass().getSimpleName()).show();
+                }
+            }
+        }
 
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        UserTbl.refresh();
         UserDTO userDTO = new UserDTO(
                 userIDTxt.getText(),
                 userNameTxt.getText(),
@@ -135,6 +169,7 @@ public class UserPrivilegesController {
                 e.printStackTrace();
             }
         }
+        UserTbl.refresh();
 
     }
 
@@ -163,7 +198,8 @@ public class UserPrivilegesController {
                     UserTbl.refresh();
                 }
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     public void BackOnAction(ActionEvent actionEvent) throws IOException {

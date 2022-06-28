@@ -1,6 +1,9 @@
 #mainPane{
     -fx-background-color: white;
 }
+#imgHome:hover{
+    -fx-effect: dropshadow(gaussian,#6495ED,20,0.0,0,0);
+}
 
 .btn{
     -fx-background-color: #0147d4;
