@@ -80,18 +80,17 @@ public class UserPrivilegesController {
             }
         });
 
-        validation_Detail_Checked_OnNewItemFormController();
+        validation_Detail_Checked_User_Prev();
     }
 
     public void text_Field_Checker_In_User_Prev(KeyEvent keyEvent) {
         ValidationUtil.textFieldChecker(userPrev, addBtn, keyEvent);
     }
 
-    private void validation_Detail_Checked_OnNewItemFormController() {
+    private void validation_Detail_Checked_User_Prev() {
         userPrev.put(userIDTxt, Pattern.compile("^[0-9]{1,5}$"));
         userPrev.put(userNameTxt, Pattern.compile("^[A-z]{4,10}$"));
         userPrev.put(passwordTxt, Pattern.compile("^([0-9]{4,10})$"));
-
     }
 
     private void setUserData(String userID) throws Exception {

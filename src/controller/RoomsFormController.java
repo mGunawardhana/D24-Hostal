@@ -11,14 +11,18 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
+import util.ValidationUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -45,6 +49,8 @@ public class RoomsFormController {
     public JFXButton btnDelete;
     public JFXButton btnUpdate;
     ObservableList<RoomDTO> obList = FXCollections.observableArrayList();
+    private final LinkedHashMap<TextField, Pattern> roomLHashmap = new LinkedHashMap<>();
+
     int rowNumber;
 
     public void initialize() {
@@ -90,6 +96,18 @@ public class RoomsFormController {
             validate(KeyCode.ENTER, txtFee, "^[1-9]{1,}$", txtFee);
             txtFee.setStyle("-jfx-unfocus-color: #89f0c9");
         });
+
+        validation_Detail_Checked_Room();
+    }
+
+    public void text_Field_Checker_In_Room(KeyEvent keyEvent) {
+        ValidationUtil.textFieldChecker(roomLHashmap, btnadd, keyEvent);
+    }
+
+    private void validation_Detail_Checked_Room() {
+        roomLHashmap.put(txtName, Pattern.compile("^[A-z]{5,10}$"));
+        roomLHashmap.put(txtDuration, Pattern.compile("^[0-9]{1,20}$"));
+        roomLHashmap.put(txtFee, Pattern.compile("^([0-9]{4,10})$"));
     }
 
     public void validate(KeyCode keyCode, TextField txt, String regex, TextField txtNow) {
