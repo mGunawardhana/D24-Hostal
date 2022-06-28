@@ -45,28 +45,28 @@ public class UserPrivilegesController {
     public JFXButton removeBtn;
     public TextField userIDTxt;
     int userRowNumber;
+    int rowNumber;
 
     ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
-    int rowNumber;
+
 
     public void initialize() {
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
         userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
         UserID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
         UserTbl.refresh();
+
         try {
             loadUser();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //======================================================
 
         UserTbl.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             userRowNumber = (Integer) newValue;
             removeBtn.setDisable(false);
             addBtn.setDisable(true);
             updateBtn.setDisable(false);
-
 
             try {
                 setUserData(userObList.get(userRowNumber).getUserID());
@@ -75,10 +75,8 @@ public class UserPrivilegesController {
             }
         });
 
-
     }
 
-    //================================================================
     private void setUserData(String userID) throws Exception {
         List<UserDTO> userDTOS = userBO.findAll();
         for (UserDTO userDTO : userDTOS) {
@@ -89,9 +87,6 @@ public class UserPrivilegesController {
             }
         }
     }
-
-    //================================================================
-
 
     public void loadUser() throws Exception {
 
