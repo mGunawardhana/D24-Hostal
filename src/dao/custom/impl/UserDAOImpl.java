@@ -74,6 +74,11 @@ public class UserDAOImpl implements UserDAO {
 
         User user = session.get(User.class, s);
 
+        Query query = session.createQuery("SELECT userName FROM User ORDER BY UserID DESC ");
+        Query query2 = session.createQuery("SELECT password FROM User ORDER BY UserID DESC");
+
+        System.out.println(query);
+
         transaction.commit();
 
         session.close();
