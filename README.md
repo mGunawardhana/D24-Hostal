@@ -22,6 +22,7 @@
  * Used technology - hibernate <br>
  * User friendly UI design.<br>
  * Special Graphic content available.<br>
+ * Validation available in every detail catching form - using Reg x
   
 If you hava any bugs or issues , If you want to explain my code pleace contact me on :point_right: whats app - * 071 9043372  :hugs:
   
