@@ -22,17 +22,17 @@
             <URL value="@../assets/style/Style.css" />
          </stylesheets>
          <children>
-            <TextField fx:id="userIDTxt" layoutX="6.0" layoutY="5.0" promptText="User ID" styleClass="textField" />
+            <TextField fx:id="userIDTxt" layoutX="6.0" layoutY="5.0" onKeyReleased="#text_Field_Checker_In_User_Prev" promptText="User ID" styleClass="textField" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="33.0" layoutY="74.0" prefHeight="37.0" prefWidth="200.0" styleClass="textPane1">
          <children>
-            <PasswordField fx:id="passwordTxt" layoutX="5.0" layoutY="5.0" promptText="Password" styleClass="textField" />
+            <PasswordField fx:id="passwordTxt" layoutX="5.0" layoutY="5.0" onKeyReleased="#text_Field_Checker_In_User_Prev" promptText="Password" styleClass="textField" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="250.0" layoutY="29.0" prefHeight="37.0" prefWidth="200.0" styleClass="textPane1">
          <children>
-            <TextField fx:id="userNameTxt" layoutX="6.0" layoutY="4.0" promptText="User Name" styleClass="textField" />
+            <TextField fx:id="userNameTxt" layoutX="6.0" layoutY="4.0" onKeyReleased="#text_Field_Checker_In_User_Prev" promptText="User Name" styleClass="textField" />
          </children>
       </AnchorPane>
       <TableView fx:id="UserTbl" layoutX="50.0" layoutY="119.0" prefHeight="200.0" prefWidth="402.0">

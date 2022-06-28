@@ -10,13 +10,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
+import util.ValidationUtil;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /*
  * Developed by - mGunawardhana
@@ -25,8 +29,8 @@ import java.util.Optional;
  */
 
 /*
-* TODO - > add RegX
-*  */
+ * TODO - > add RegX
+ *  */
 
 public class UserPrivilegesController {
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
@@ -47,6 +51,7 @@ public class UserPrivilegesController {
     int userRowNumber;
     int rowNumber;
 
+    private final LinkedHashMap<TextField, Pattern> userPrev = new LinkedHashMap<>();
     ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
 
 
@@ -74,6 +79,18 @@ public class UserPrivilegesController {
                 new Alert(Alert.AlertType.WARNING, "Error").show();
             }
         });
+
+        validation_Detail_Checked_OnNewItemFormController();
+    }
+
+    public void text_Field_Checker_In_User_Prev(KeyEvent keyEvent) {
+        ValidationUtil.textFieldChecker(userPrev, addBtn, keyEvent);
+    }
+
+    private void validation_Detail_Checked_OnNewItemFormController() {
+        userPrev.put(userIDTxt, Pattern.compile("^[0-9]{1,5}$"));
+        userPrev.put(userNameTxt, Pattern.compile("^[A-z]{4,10}$"));
+        userPrev.put(passwordTxt, Pattern.compile("^([0-9]{4,10})$"));
 
     }
 
