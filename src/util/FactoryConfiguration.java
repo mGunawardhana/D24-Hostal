@@ -10,7 +10,11 @@ import org.hibernate.cfg.Configuration;
 
 import java.io.IOException;
 import java.util.Properties;
-
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
 public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
     private final SessionFactory sessionFactory;

@@ -11,6 +11,16 @@ import util.UILoader;
 
 import java.util.List;
 
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
+
+/*
+ * TODO - > add RegX
+ *  */
+
 public class LoginPageFormController {
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
     public TextField txtName;

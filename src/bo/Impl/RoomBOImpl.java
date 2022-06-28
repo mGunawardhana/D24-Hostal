@@ -12,7 +12,11 @@ import entity.Room;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
 public class RoomBOImpl implements RoomBO {
 
     private final RoomDAO roomDAO = (RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);

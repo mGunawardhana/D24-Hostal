@@ -8,7 +8,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
 public class UILoader {
     public static void loadOnTheCurrentPane(String filename, AnchorPane context) throws IOException {
         URL resource = UILoader.class.getResource("../view/" + filename + ".fxml");

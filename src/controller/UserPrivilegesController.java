@@ -1,6 +1,7 @@
 package controller;
 
-import bo.*;
+import bo.BOFactory;
+import bo.UserBO;
 import com.jfoenix.controls.JFXButton;
 import dto.UserDTO;
 import entity.User;
@@ -17,10 +18,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
+
+/*
+* TODO - > add RegX
+*  */
+
 public class UserPrivilegesController {
-//    private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.STUDENT);
-//    private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
-//    private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
 
 
@@ -173,7 +181,7 @@ public class UserPrivilegesController {
     }
 
     public void removeOnAction(ActionEvent actionEvent) {
-UserTbl.refresh();
+        UserTbl.refresh();
         try {
             List<UserDTO> all = userBO.findAll();//==============================================
             all.removeIf(userDTO -> !userDTO.getUserID().equals(userIDTxt.getText()));

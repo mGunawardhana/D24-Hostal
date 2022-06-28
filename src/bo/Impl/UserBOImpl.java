@@ -8,7 +8,11 @@ import entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Developed by - mGunawardhana
+ * Contact email - mrgunawardhana27368@gmail.com
+ * what's app - 071 - 9043372
+ */
 public class UserBOImpl implements UserBO {
 
     private final UserDAO userDAO = (UserDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.USER);
