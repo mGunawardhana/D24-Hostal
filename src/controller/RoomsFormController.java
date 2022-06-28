@@ -28,13 +28,10 @@ import java.util.regex.Pattern;
  * Contact email - mrgunawardhana27368@gmail.com
  * what's app - 071 - 9043372
  */
-
-/*
- * TODO - > add RegX
- *  */
 public class RoomsFormController {
     private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
     private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
+    private final LinkedHashMap<TextField, Pattern> roomLHashmap = new LinkedHashMap<>();
     public AnchorPane contextPro;
     public TextField txtName;
     public TextField txtDuration;
@@ -49,8 +46,6 @@ public class RoomsFormController {
     public JFXButton btnDelete;
     public JFXButton btnUpdate;
     ObservableList<RoomDTO> obList = FXCollections.observableArrayList();
-    private final LinkedHashMap<TextField, Pattern> roomLHashmap = new LinkedHashMap<>();
-
     int rowNumber;
 
     public void initialize() {
@@ -124,13 +119,10 @@ public class RoomsFormController {
         List<RoomDTO> all = roomBO.findAll();
         for (RoomDTO roomDTO : all) {
             if (roomDTO.getRoomID().equals(programID)) {
-//============================================================================================================================================
                 txtName.setText(roomDTO.getRoomType());
                 txtDuration.setText(String.valueOf(roomDTO.getRoomQty()));//***************************************
                 txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()));
                 lbID.setText(roomDTO.getRoomID());
-//============================================================================================================================================
-
             }
         }
     }
@@ -162,7 +154,6 @@ public class RoomsFormController {
                     txtName.getText(),
                     Integer.parseInt(txtDuration.getText()),//********************************************************
                     Double.parseDouble(txtFee.getText()));
-
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             Optional<ButtonType> result = alert.showAndWait();
@@ -232,11 +223,9 @@ public class RoomsFormController {
                 e.printStackTrace();
             }
         }
-
     }
 
     public void deleteRoom(MouseEvent mouseEvent) {
-
         try {
             List<ReserveDTO> all = reserveBO.findAll();
             all.removeIf(reserveDTO -> !reserveDTO.getRID().equals(lbID.getText()));
@@ -252,7 +241,6 @@ public class RoomsFormController {
                 }
                 if (bool && roomBO.delete(lbID.getText())) {
 
-//
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                     alert2.setTitle("Message");
                     alert2.setContentText("Saved..");
@@ -269,43 +257,5 @@ public class RoomsFormController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-//    public void deleteRoom(MouseEvent mouseEvent) {
-//
-//        try {
-//            List<ReserveDTO> all = reserveBO.findAll();
-//            all.removeIf(reserveDTO -> !reserveDTO.getRID().equals(lbID.getText()));
-//
-//
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            Optional<ButtonType> result = alert.showAndWait();
-//
-//            if (result.get() == ButtonType.OK) {
-//                boolean bool = false;
-//                for (ReserveDTO reserveDTO : all) {
-//                    bool = reserveBO.delete(reserveDTO.getId());
-//                }
-//                if (bool && roomBO.delete(lbID.getText())) {
-//
-////
-//                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-//                    alert2.setTitle("Message");
-//                    alert2.setContentText("Saved..");
-//                    alert2.show();
-//
-//                    obList.remove(rowNumber);
-//                    tblProgram.refresh();
-//
-//                } else {
-//                    new Alert(Alert.AlertType.WARNING, "Try Again..").show();
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 }

@@ -28,10 +28,6 @@ import java.util.regex.Pattern;
  * what's app - 071 - 9043372
  */
 
-/*
- * TODO - > add RegX
- *  */
-
 public class UserPrivilegesController {
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
 
@@ -114,7 +110,6 @@ public class UserPrivilegesController {
         UserTbl.setItems(userObList);
     }
 
-
     public void addOnAction(ActionEvent actionEvent) {
         if (userIDTxt.getText().trim().isEmpty() || userNameTxt.getText().trim().isEmpty() || passwordTxt.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Empty text Fields").show();
@@ -159,7 +154,6 @@ public class UserPrivilegesController {
                 userIDTxt.getText(),
                 userNameTxt.getText(),
                 passwordTxt.getText()
-
         );
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -174,11 +168,9 @@ public class UserPrivilegesController {
                     alert2.setContentText("Saved..");
                     alert2.show();
 
-
                     userObList.remove(userRowNumber);
                     userObList.add(userDTO);
                     UserTbl.refresh();
-
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Try Again..").show();
@@ -188,7 +180,6 @@ public class UserPrivilegesController {
             }
         }
         UserTbl.refresh();
-
     }
 
     public void removeOnAction(ActionEvent actionEvent) {
@@ -215,7 +206,6 @@ public class UserPrivilegesController {
 
                     loadUser();
                     UserTbl.refresh();
-
                 }
             }
         } catch (Exception ignored) {

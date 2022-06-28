@@ -16,29 +16,26 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
+import util.ValidationUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.regex.Pattern;
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
  * what's app - 071 - 9043372
  */
 
-/*
- * TODO - > add RegX
- *  */
 public class StudentRegFormController {
-    public static int temp01 = 0;//==========================================================
+    public static int temp01 = 0;
     private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.STUDENT);
     private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
     private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
@@ -47,7 +44,7 @@ public class StudentRegFormController {
     public TextField txtAge;
     public TextField txtPhone;
     public TextField txtNIC;
-    public TextArea txtAddress;
+    
     public TextField key_money;
     public Label lbID;
     public JFXDatePicker dob;
@@ -76,8 +73,11 @@ public class StudentRegFormController {
     public JFXButton btnUpdate;
     public JFXButton clearBtn;
     public TextField txtRQty;
+    public TextField txtAddress;
     int stRowNumber;
     ObservableList<StudentDTO> stObList = FXCollections.observableArrayList();
+    private final LinkedHashMap<TextField, Pattern> studentLHashmap = new LinkedHashMap<>();
+
 
     public void initialize() {
         stuIdCol.setCellValueFactory(new PropertyValueFactory<>("studentID"));
@@ -90,15 +90,12 @@ public class StudentRegFormController {
         GenderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         k_moneyCol.setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
 
-
         try {
-            setStudentID();//==============
+            setStudentID();
             loadStudentTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //============================================================
 
         studentTBL.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             stRowNumber = (Integer) newValue;
@@ -114,9 +111,6 @@ public class StudentRegFormController {
             }
         });
 
-
-        //============================================================
-
         loadDate();
 
         btnDelete.setDisable(true);
@@ -129,9 +123,6 @@ public class StudentRegFormController {
         }
 
         cmbRegProgram.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //========================================================================================
-//            StudentBO studentBO = new StudentBOImpl();
-//            RoomBO roomBO = new RoomBOImpl();
             try {
                 RoomDTO roomDTO = roomBO.find(newValue);
 
@@ -141,7 +132,6 @@ public class StudentRegFormController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-//==========================================================================================================================
 
             try {
                 setRegDate(String.valueOf(newValue));
@@ -152,19 +142,9 @@ public class StudentRegFormController {
         });
 
         cmpProgram.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-
-            //DI
-//            RoomBO roomBO = new RoomBOImpl();
             try {
                 RoomDTO roomDTO = roomBO.find(newValue);
                 txtRQty.setText(String.valueOf(roomDTO.getRoomQty()));
-
-//                txtRQty.clear();
-//                roomDTO.setRoomQty(roomDTO.getRoomQty()-1);
-
-//                txtRQty.setText(String.valueOf(roomDTO.getRoomQty()-1));
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -191,9 +171,23 @@ public class StudentRegFormController {
             validate(KeyCode.ENTER, txtNIC, "^[0-9]{10}$", txtPhone);
             txtPhone.setStyle("-jfx-unfocus-color: #89f0c9");
         });
+
+        validation_Detail_Checked_Student();
     }
 
-    //================================================================
+    public void text_Field_Checker_In_Student(KeyEvent keyEvent) {
+        ValidationUtil.textFieldChecker(studentLHashmap, regID, keyEvent);
+    }
+
+    private void validation_Detail_Checked_Student() {
+        studentLHashmap.put(txtsName, Pattern.compile("^[A-z ]{3,20}$"));
+        studentLHashmap.put(txtAge, Pattern.compile("^[0-9]{1,2}$"));
+        studentLHashmap.put(txtPhone, Pattern.compile("^([0-9]{10})$"));//
+        studentLHashmap.put(txtNIC, Pattern.compile("^[0-9]{12}$"));//
+        studentLHashmap.put(txtAddress, Pattern.compile("^[A-z ]{5,20}$"));
+        studentLHashmap.put(genderTxt, Pattern.compile("^((male)|(female))$"));
+        studentLHashmap.put(key_money, Pattern.compile("^[0-9]{3,10}$"));
+    }
 
     private void setStudentData(String programID) throws Exception {
 
@@ -203,9 +197,6 @@ public class StudentRegFormController {
             if (studentDTO.getStudentID().equals(programID)) {
 
                 txtID.setText(studentDTO.getStudentID());
-
-                //--------------------------------------------------------------------------------
-
                 txtsName.setText(studentDTO.getName());
                 txtAge.setText(String.valueOf(studentDTO.getAge()));
                 txtAddress.setText(studentDTO.getAddress());
@@ -250,7 +241,7 @@ public class StudentRegFormController {
     }
 
     private void setRegDate(String newValue) throws Exception {
-        List<ReserveDTO> all = reserveBO.findAll();//======================
+        List<ReserveDTO> all = reserveBO.findAll();
         for (ReserveDTO reserveDTO : all) {
             if (reserveDTO.getSID().equals(lbsID.getText()) && reserveDTO.getRID().equals(cmbRegProgram.getSelectionModel().getSelectedItem())) {
                 txtRegDate.setText(reserveDTO.getDate());
@@ -304,10 +295,8 @@ public class StudentRegFormController {
                         dob.getValue().toString(),
                         txtNIC.getText(),
                         genderTxt.getText(),
-
                         Double.parseDouble(key_money.getText())
 
-                        //==========================================================================================
                 );
 
                 ReserveDTO reserveDTO = null;
