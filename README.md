@@ -1,10 +1,12 @@
 
 # D24-Hostal
 
-![Screenshot (969)](https://user-images.githubusercontent.com/100486080/175825084-4dcec9f2-7668-4f4f-9618-99d24fa1d3c8.png)
+![Screenshot (971)](https://user-images.githubusercontent.com/100486080/176123208-13804883-4510-4386-b5c2-b18b2d5878dc.png)
 
+![Screenshot (972)](https://user-images.githubusercontent.com/100486080/176123260-bd2694e5-f141-4902-8594-e949436b7ee4.png)
 
-![Screenshot (967)](https://user-images.githubusercontent.com/100486080/175810789-44047d43-1ab2-42cc-832e-ed17c16b5d6a.png)
+![Screenshot (973)](https://user-images.githubusercontent.com/100486080/176123278-26a66d35-a6bc-485a-9795-885b7d3615db.png)
 
+![Screenshot (974)](https://user-images.githubusercontent.com/100486080/176123296-5c8553c0-a516-455c-a3f2-6db3b78ae4cf.png)
 
-![Screenshot (968)](https://user-images.githubusercontent.com/100486080/175811090-cad7ac54-b7ba-43c3-b717-295277097e0c.png)
+![Screenshot (975)](https://user-images.githubusercontent.com/100486080/176123307-b50420ce-88c6-407c-9bc7-143ec68d91d5.png)
