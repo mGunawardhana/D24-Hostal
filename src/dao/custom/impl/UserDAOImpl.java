@@ -1,5 +1,6 @@
 package dao.custom.impl;
 
+import controller.UserPrivilegesController;
 import dao.custom.UserDAO;
 import entity.Room;
 import entity.Student;

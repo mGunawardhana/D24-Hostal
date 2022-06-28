@@ -61,8 +61,6 @@ public class StudentDAOImpl implements StudentDAO {
         query.setParameter("id", s);
 
         if (query.executeUpdate() > 0) {
-
-
             bool = true;
         }
 

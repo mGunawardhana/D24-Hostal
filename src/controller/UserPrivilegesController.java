@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
 
@@ -77,10 +78,7 @@ public class UserPrivilegesController {
                 userIDTxt.setText(userDTO.getUserID());
                 userNameTxt.setText(userDTO.getUserName());
                 passwordTxt.setText(userDTO.getPassword());
-
             }
-
-
         }
     }
 
@@ -88,6 +86,7 @@ public class UserPrivilegesController {
 
 
     public void loadUser() throws Exception {
+
         userObList.clear();
         List<UserDTO> all = userBO.findAll();
         for (UserDTO userDTO : all) {
@@ -174,9 +173,10 @@ public class UserPrivilegesController {
     }
 
     public void removeOnAction(ActionEvent actionEvent) {
+UserTbl.refresh();
         try {
             List<UserDTO> all = userBO.findAll();//==============================================
-            all.removeIf(userDTO -> !userDTO.getUserID().equals(UserID.getText()));
+            all.removeIf(userDTO -> !userDTO.getUserID().equals(userIDTxt.getText()));
 
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -196,6 +196,7 @@ public class UserPrivilegesController {
 
                     loadUser();
                     UserTbl.refresh();
+
                 }
             }
         } catch (Exception ignored) {
@@ -204,5 +205,36 @@ public class UserPrivilegesController {
 
     public void BackOnAction(ActionEvent actionEvent) throws IOException {
         UILoader.load("MainForm", context);
+    }
+
+    public void delete(MouseEvent mouseEvent) {
+
+        try {
+            List<UserDTO> all = userBO.findAll();//==============================================
+            all.removeIf(userDTO -> !userDTO.getUserID().equals(userIDTxt.getText()));
+
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                boolean bool = false;
+                for (UserDTO userDTO : all) {
+                    bool = userBO.delete(userDTO.getUserID());//----------------
+                }
+                if (bool && userBO.delete(userIDTxt.getText())) {
+
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Message");
+                    alert2.setContentText("Saved..");
+                    alert2.show();
+
+                    loadUser();
+                    UserTbl.refresh();
+
+                }
+            }
+        } catch (Exception ignored) {
+        }
     }
 }
