@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="context" prefHeight="348.0" prefWidth="668.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0.5EM;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+   <children>
+      <ImageView fitHeight="296.0" fitWidth="668.0" layoutY="24.0" opacity="0.36" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/green-monstera-leaves-by-white-wall.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="319.0" prefHeight="15.0" prefWidth="668.0" style="-fx-background-color: #34495e;" />
+      <JFXButton fx:id="studentBtn" buttonType="RAISED" layoutX="238.0" layoutY="55.0" onMouseClicked="#openStudentDetail" prefHeight="45.0" prefWidth="192.0" style="-fx-background-color: #34495e; -fx-background-radius: 1em;" text="Students" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </JFXButton>
+      <JFXButton fx:id="programBtn" buttonType="RAISED" layoutX="238.0" layoutY="118.0" onMouseClicked="#openProgramDetails" prefHeight="45.0" prefWidth="192.0" style="-fx-background-color: #34495e; -fx-background-radius: 1em;" text="Rooms" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </JFXButton>
+      <AnchorPane layoutY="9.0" prefHeight="15.0" prefWidth="668.0" style="-fx-background-color: #34495e;" />
+      <JFXButton buttonType="RAISED" layoutX="238.0" layoutY="182.0" onAction="#userOnAction" onMouseClicked="#openProgramDetails" prefHeight="45.0" prefWidth="192.0" style="-fx-background-color: #34495e; -fx-background-radius: 1em;" text="User" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="238.0" layoutY="242.0" onAction="#ReserveOnAction" onMouseClicked="#openProgramDetails" prefHeight="45.0" prefWidth="192.0" style="-fx-background-color: #34495e; -fx-background-radius: 1em;" text="Reserve" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </JFXButton>
+   </children>
+</AnchorPane>

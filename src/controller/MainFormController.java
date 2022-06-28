@@ -25,4 +25,8 @@ public class MainFormController {
     public void userOnAction(ActionEvent actionEvent) throws IOException {
         UILoader.load("UserPrivilegesForm",context);
     }
+
+    public void ReserveOnAction(ActionEvent actionEvent) throws IOException {
+        UILoader.load("ReserveViewForm",context);
+    }
 }
