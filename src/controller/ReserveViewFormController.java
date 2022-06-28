@@ -35,9 +35,9 @@ public class ReserveViewFormController {
     public void initialize(){
         reserveIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("key_money"));
-        roomIDCol.setCellValueFactory(new PropertyValueFactory<>("room_ID"));
-        studentIDCol.setCellValueFactory(new PropertyValueFactory<>("student_ID"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
+        roomIDCol.setCellValueFactory(new PropertyValueFactory<>("rID"));
+        studentIDCol.setCellValueFactory(new PropertyValueFactory<>("sID"));
 
         try {
             loadReserve();
