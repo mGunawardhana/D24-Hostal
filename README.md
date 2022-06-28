@@ -13,3 +13,16 @@
 ![Screenshot (983)](https://user-images.githubusercontent.com/100486080/176251316-73b13200-2d01-4162-b363-7929e7a14529.png)
 
 ![Screenshot (984)](https://user-images.githubusercontent.com/100486080/176251338-f9805bf3-3591-4c1d-9cc3-25f909eea498.png)
+
+
+<br><h3> 🤟Another Options in D24  -----------------------------------------------------</h3><br>
+
+**Used Languages - Java , CSS , HQL** <br>
+
+ * Used technology - hibernate <br>
+ * User friendly UI design.<br>
+ * Special Graphic content available.<br>
+  
+If you hava any bugs or issues , If you want to explain my code pleace contact me on :point_right: whats app - * 071 9043372  :hugs:
+  
+                                        😋 If you think my code is good pleace drop a star. 😋
