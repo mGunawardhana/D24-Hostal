@@ -4,8 +4,12 @@ import bo.BOFactory;
 import bo.UserBO;
 import dto.UserDTO;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import util.UILoader;
 
@@ -26,6 +30,7 @@ public class LoginPageFormController {
     public TextField txtName;
     public PasswordField txtPwd;
     public AnchorPane loginContext;
+    public Label lblHide;
 
 
     public void logInOnAction(ActionEvent actionEvent) throws Exception {
@@ -43,5 +48,36 @@ public class LoginPageFormController {
             }
         }
     }
+
+    public void showPasswordOnMousePressed(MouseEvent mouseEvent) {
+        Image img = new Image("assets/show.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        lblHide.setGraphic(view);
+
+        txtPwd.setPromptText(txtPwd.getText());
+        txtPwd.setText("");
+        txtPwd.setDisable(true);
+        txtPwd.requestFocus();
+    }
+
+
+    /*** --------------------------------------------HIDE PASSWORD----------------------------------------------------*/
+
+    public void hidePasswordOnMousePressed(MouseEvent mouseEvent) {
+        Image img = new Image("assets/hide.png");
+        ImageView view = new ImageView(img);
+        view.setFitHeight(30);
+        view.setFitWidth(30);
+        lblHide.setGraphic(view);
+
+        txtPwd.setText(txtPwd.getPromptText());
+        txtPwd.setPromptText("");
+        txtPwd.setDisable(false);
+    }
+
+
+
 }
 

@@ -100,10 +100,18 @@ public class RoomsFormController {
     }
 
     private void validation_Detail_Checked_Room() {
-        roomLHashmap.put(txtName, Pattern.compile("^[A-z]{5,10}$"));
+        roomLHashmap.put(txtName, Pattern.compile("^[A-z]{3,10}$"));
         roomLHashmap.put(txtDuration, Pattern.compile("^[0-9]{1,20}$"));
         roomLHashmap.put(txtFee, Pattern.compile("^([0-9]{4,10})$"));
     }
+
+
+
+
+
+
+
+
 
     public void validate(KeyCode keyCode, TextField txt, String regex, TextField txtNow) {
         if (keyCode == KeyCode.ENTER) {

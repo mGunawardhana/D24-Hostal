@@ -7,9 +7,15 @@ import bo.StudentBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import dao.DAOFactory;
+import dao.custom.ReserveDAO;
+import dao.custom.RoomDAO;
+import dao.custom.StudentDAO;
 import dto.ReserveDTO;
 import dto.RoomDTO;
 import dto.StudentDTO;
+import entity.Room;
+import entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +45,12 @@ public class StudentRegFormController {
     private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.STUDENT);
     private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
     private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
+
+    private final ReserveDAO reserveDAO =(ReserveDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.RESERVE);
+    private final RoomDAO roomDAO =(RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+    private final StudentDAO studentDAO=(StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+
+
     public AnchorPane contextStd;
     public TextField txtsName;
     public TextField txtAge;
@@ -209,7 +221,6 @@ public class StudentRegFormController {
             }
         }
     }
-
 
     public void loadStudentTable() throws Exception {
         stObList.clear();

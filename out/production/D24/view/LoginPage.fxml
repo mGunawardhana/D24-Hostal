@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--        Developed by - mGunawardhana-->
+<!--        Contact email - mrgunawardhana27368@gmail.com-->
+<!--        what's app - 071 - 9043372-->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginContext" prefHeight="400.0" prefWidth="425.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginPageFormController">
+    <children>
+        <TextField fx:id="txtName" layoutX="56.0" layoutY="201.0" prefHeight="41.0" prefWidth="313.0" promptText="User Name here" />
+        <PasswordField fx:id="txtPwd" layoutX="56.0" layoutY="251.0" prefHeight="41.0" prefWidth="313.0" promptText="Password here" />
+        <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="153.0" layoutY="66.0" pickOnBounds="true">
+            <image>
+                <Image url="@../assets/profile-adam-levine.png" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutY="14.0" prefHeight="15.0" prefWidth="430.0" style="-fx-background-color: #34495e;" />
+        <AnchorPane layoutY="371.0" prefHeight="15.0" prefWidth="430.0" style="-fx-background-color: #34495e;" />
+        <JFXButton buttonType="RAISED" layoutX="178.0" layoutY="302.0" onAction="#logInOnAction" style="-fx-background-color: #34495e;" text="Log in" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </JFXButton>
+      <Label fx:id="lblHide" layoutX="332.0" layoutY="257.0" onMousePressed="#showPasswordOnMousePressed" onMouseReleased="#hidePasswordOnMousePressed" prefHeight="30.0" prefWidth="30.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hide.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+    </children>
+</AnchorPane>
