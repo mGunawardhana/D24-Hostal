@@ -1,14 +1,29 @@
 
 # D24-Hostal
 
-![Screenshot (971)](https://user-images.githubusercontent.com/100486080/176123208-13804883-4510-4386-b5c2-b18b2d5878dc.png)
 
-![Screenshot (977)](https://user-images.githubusercontent.com/100486080/176148741-edade597-37c3-4efb-8c22-14a233d8fd54.png)
+![Screenshot (979)](https://user-images.githubusercontent.com/100486080/176251275-d57fc6d2-77d7-4c75-aa58-7c5ed97b290a.png)
 
-![Screenshot (978)](https://user-images.githubusercontent.com/100486080/176148658-6e21c5d4-1bde-4d99-90d4-6b7ea1b0ea19.png)
+![Screenshot (980)](https://user-images.githubusercontent.com/100486080/176251287-d2403bec-c781-486d-84f9-95e9e765f5ac.png)
 
-![Screenshot (973)](https://user-images.githubusercontent.com/100486080/176123278-26a66d35-a6bc-485a-9795-885b7d3615db.png)
+![Screenshot (981)](https://user-images.githubusercontent.com/100486080/176251299-d92d282d-d6d7-4d22-836d-b604dd0c4d1d.png)
 
-![Screenshot (974)](https://user-images.githubusercontent.com/100486080/176123296-5c8553c0-a516-455c-a3f2-6db3b78ae4cf.png)
+![Screenshot (982)](https://user-images.githubusercontent.com/100486080/176251312-75a809d3-d3ba-4a8a-9ecb-b1c24ac59f16.png)
 
-![Screenshot (975)](https://user-images.githubusercontent.com/100486080/176123307-b50420ce-88c6-407c-9bc7-143ec68d91d5.png)
+![Screenshot (983)](https://user-images.githubusercontent.com/100486080/176251316-73b13200-2d01-4162-b363-7929e7a14529.png)
+
+![Screenshot (984)](https://user-images.githubusercontent.com/100486080/176251338-f9805bf3-3591-4c1d-9cc3-25f909eea498.png)
+
+
+<br><h3> 🤟Another Options in D24  -----------------------------------------------------</h3><br>
+
+**Used Languages - Java , CSS , HQL** <br>
+
+ * Used technology - hibernate <br>
+ * User friendly UI design.<br>
+ * Special Graphic content available.<br>
+ * Validation available in every detail catching form - using Reg x
+  
+If you hava any bugs or issues , If you want to explain my code or if you need help to develop your projects pleace contact me on :point_right: <br> whats app -* 071 9043372  :hugs:
+  
+                                        😋 If you think my code is good pleace drop a star. 😋
