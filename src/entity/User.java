@@ -21,8 +21,5 @@ public class User implements SuperEntity{
     @Id
     private String UserID;
     private String userName;
-
     private String password;
-
-
 }

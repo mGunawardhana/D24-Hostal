@@ -1,6 +1,7 @@
 package controller;
 
 import bo.BOFactory;
+import bo.Impl.RoomBOImpl;
 import bo.ReserveBO;
 import bo.RoomBO;
 import bo.StudentBO;
@@ -408,6 +409,12 @@ public class StudentRegFormController {
                 boolean bool = false;
                 for (ReserveDTO reserveDTO : all) {
                     bool = reserveBO.delete(reserveDTO.getId());//----------------
+
+                    RoomBO roomBO = new RoomBOImpl();
+                    RoomDTO roomDTO = roomBO.find(reserveDTO.getRID());
+                    roomDTO.setRoomQty(roomDTO.getRoomQty()+1);
+                    roomBO.update(roomDTO);
+
                 }
                 if (bool && studentBO.delete(lbsID.getText())) {
 
@@ -426,6 +433,7 @@ public class StudentRegFormController {
 //        }
         } catch (Exception ignored) {
         }
+
     }
 
     public void UpdateStudent(MouseEvent mouseEvent) {

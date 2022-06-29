@@ -55,11 +55,18 @@ public class LoginPageFormController {
         view.setFitHeight(30);
         view.setFitWidth(30);
         lblHide.setGraphic(view);
+//
+//        txtPwd.setPromptText(txtPwd.getText());
+//        txtPwd.setVisible(true);
+//        txtPwd.setText("");
+//
+//        txtPwd.requestFocus();
 
+        txtPwd.setStyle("-fx-background-color:#3742fa ");
         txtPwd.setPromptText(txtPwd.getText());
         txtPwd.setText("");
         txtPwd.setDisable(true);
-        txtPwd.requestFocus();
+
     }
 
 
@@ -72,9 +79,16 @@ public class LoginPageFormController {
         view.setFitWidth(30);
         lblHide.setGraphic(view);
 
-        txtPwd.setText(txtPwd.getPromptText());
+
+        txtPwd .setText(txtPwd.getPromptText());
         txtPwd.setPromptText("");
         txtPwd.setDisable(false);
+        txtPwd.setStyle("-fx-control-inner-background:#ffffff ");
+
+//        txtPwd.setText(txtPwd.getPromptText());
+//        txtPwd.setPromptText("");
+//        txtPwd.setDisable(false);
+
     }
 
 

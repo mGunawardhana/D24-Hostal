@@ -243,9 +243,9 @@ public class RoomsFormController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
-                boolean bool = false;
+                boolean bool = true;
                 for (ReserveDTO reserveDTO : all) {
-                    bool = reserveBO.delete(reserveDTO.getId());
+//                    bool = reserveBO.delete(reserveDTO.getId());
                 }
                 if (bool && roomBO.delete(lbID.getText())) {
 
