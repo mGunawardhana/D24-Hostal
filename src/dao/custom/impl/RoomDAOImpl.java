@@ -93,11 +93,11 @@ public class RoomDAOImpl implements RoomDAO {
 
         for (String id : programids) {
             if (id != null) {
-                int newProgramId = Integer.parseInt(id.replace("R-", "")) + 1;
-                return String.format("R-%03d", newProgramId);
+                int newProgramId = Integer.parseInt(id.replace("RM-", "")) + 1;
+                return String.format("RM-%03d", newProgramId);
             }
         }
-        return "R-001";
+        return "RM-001";
     }
 
 }
