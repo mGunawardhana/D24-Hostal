@@ -2,17 +2,18 @@ package bo.Impl;
 
 import bo.ReserveBO;
 import dao.DAOFactory;
-import dao.custom.RoomDAO;
 import dao.custom.ReserveDAO;
+import dao.custom.RoomDAO;
 import dao.custom.StudentDAO;
 import dto.ReserveDTO;
-import entity.Room;
 import entity.Reserve;
+import entity.Room;
 import entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -20,19 +21,17 @@ import java.util.List;
  */
 public class ReserveBOImpl implements ReserveBO {
 
-    private final ReserveDAO reserveDAO =(ReserveDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.RESERVE);
-    private final RoomDAO roomDAO =(RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);
-    private final StudentDAO studentDAO=(StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+    private final ReserveDAO reserveDAO = (ReserveDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.RESERVE);
+    private final RoomDAO roomDAO = (RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+    private final StudentDAO studentDAO = (StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
 
     @Override
     public boolean add(ReserveDTO reserveDTO) throws Exception {
-        //=======================================================================================
+
         Student student = studentDAO.find(reserveDTO.getSID());
         Room room = roomDAO.find(reserveDTO.getRID());
-        room.setRoomQty( room.getRoomQty() - 1);
+        room.setRoomQty(room.getRoomQty() - 1);
         roomDAO.update(room);
-        //=======================================================================================
-
 
         return reserveDAO.add(new Reserve(
                 reserveDTO.getId(),
@@ -46,12 +45,9 @@ public class ReserveBOImpl implements ReserveBO {
     @Override
     public List<ReserveDTO> findAll() throws Exception {
 
-
-        List<ReserveDTO> reserveDTOS =new ArrayList<>();
+        List<ReserveDTO> reserveDTOS = new ArrayList<>();
         List<Reserve> regRoom = reserveDAO.findAll();
 
-
-//        System.out.println(regRoom.get(0).getRID());
         for (Reserve reserve : regRoom) {
             reserveDTOS.add(new ReserveDTO(
                     reserve.getId(),
@@ -69,18 +65,8 @@ public class ReserveBOImpl implements ReserveBO {
     }
 
     @Override
-    public boolean delete(String id ) throws Exception {
-        //=======================================================================================
-//        Student student = studentDAO.find(id);
-//        Room room = roomDAO.find(id);
-//        room.setRoomQty( room.getRoomQty()+1);
-//        roomDAO.update(room);
-        //=======================================================================================
-
-
-//        Student student = studentDAO.find(reserveDTO.getSID());
-                return reserveDAO.delete(id);
-//
+    public boolean delete(String id) throws Exception {
+        return reserveDAO.delete(id);
     }
 
     @Override
@@ -105,7 +91,7 @@ public class ReserveBOImpl implements ReserveBO {
 
     @Override
     public List<ReserveDTO> getregRoom(String id) throws Exception {
-        List<ReserveDTO> reserveDTOS =new ArrayList<>();
+        List<ReserveDTO> reserveDTOS = new ArrayList<>();
         List<Reserve> regProgram = reserveDAO.getRegProgram(id);
         for (Reserve reserve : regProgram) {
             reserveDTOS.add(new ReserveDTO(
@@ -117,6 +103,5 @@ public class ReserveBOImpl implements ReserveBO {
             ));
         }
         return reserveDTOS;
-
     }
 }

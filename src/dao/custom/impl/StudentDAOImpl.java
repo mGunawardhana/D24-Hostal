@@ -1,11 +1,7 @@
 package dao.custom.impl;
 
-import controller.StudentRegFormController;
 import dao.custom.StudentDAO;
-import dto.RoomDTO;
-import entity.Room;
 import entity.Student;
-import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -13,6 +9,7 @@ import util.FactoryConfiguration;
 
 import java.sql.SQLException;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -24,8 +21,8 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean add(Student entity) throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.save(entity);
 
+        session.save(entity);
 
         transaction.commit();
         session.close();
@@ -34,16 +31,14 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean update(Student entity) throws Exception {
-//        return false;
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         session.update(entity);
 
-
         transaction.commit();
         session.close();
-        return  true;
+        return true;
     }
 
     @Override
@@ -52,22 +47,12 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        // student id eken eyage reserve eka hyganna oni
-        // reserve eken adala room no eka ganna haki
-        //a room number eke dn thiyena quantity ekata ekak ekathu karanna
-
-//        Student student = studentDAO.find(reserveDTO.getSID());
-//        Room room = roomDAO.find(reserveDTO.getRID());
-//        room.setRoomQty( room.getRoomQty() - 1);
-//        roomDAO.update(room);
-
         Query query = session.createQuery("DELETE FROM Student WHERE studentID=:id");
         query.setParameter("id", s);
 
         if (query.executeUpdate() > 0) {
             bool = true;
         }
-
 
         transaction.commit();
         session.close();
@@ -97,21 +82,14 @@ public class StudentDAOImpl implements StudentDAO {
         List<Student> list = program.list();
 
         transaction.commit();
-
         session.close();
         return list;
     }
 
     @Override
     public String generateId() throws SQLException, ClassNotFoundException {
-
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-
-//        String hql = "SELECT studentID FROM Student ORDER BY studentID DESC LIMIT 1";
-//        Query sqlQuery = session.createSQLQuery(hql);
-//        List<String> studentList = sqlQuery.list();
-
 
         Query sqlQuery = session.createSQLQuery("SELECT studentID FROM Student ORDER BY studentID DESC LIMIT 1");
         List<String> studentList = sqlQuery.list();

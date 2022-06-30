@@ -30,15 +30,13 @@ import java.util.regex.Pattern;
 
 public class UserPrivilegesController {
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
-
-
+    private final LinkedHashMap<TextField, Pattern> userPrev = new LinkedHashMap<>();
     public TextField userNameTxt;
     public PasswordField passwordTxt;
     public TableView<UserDTO> UserTbl;
     public TableColumn<User, String> userNameCol;
     public TableColumn<User, String> passwordCol;
     public AnchorPane context;
-
     public TableColumn<User, String> UserID;
     public JFXButton addBtn;
     public JFXButton updateBtn;
@@ -46,8 +44,6 @@ public class UserPrivilegesController {
     public TextField userIDTxt;
     int userRowNumber;
     int rowNumber;
-
-    private final LinkedHashMap<TextField, Pattern> userPrev = new LinkedHashMap<>();
     ObservableList<UserDTO> userObList = FXCollections.observableArrayList();
 
 
@@ -132,11 +128,8 @@ public class UserPrivilegesController {
                         alert2.setContentText("Saved..");
                         alert2.show();
 
-//                        setRoomID();
                         UserTbl.refresh();
                         loadUser();
-//                        clear();
-
                     } else {
                         new Alert(Alert.AlertType.WARNING, "Try Again..").show();
                     }
@@ -185,7 +178,7 @@ public class UserPrivilegesController {
     public void removeOnAction(ActionEvent actionEvent) {
         UserTbl.refresh();
         try {
-            List<UserDTO> all = userBO.findAll();//==============================================
+            List<UserDTO> all = userBO.findAll();
             all.removeIf(userDTO -> !userDTO.getUserID().equals(userIDTxt.getText()));
 
 
@@ -195,7 +188,7 @@ public class UserPrivilegesController {
             if (result.get() == ButtonType.OK) {
                 boolean bool = false;
                 for (UserDTO userDTO : all) {
-                    bool = userBO.delete(userDTO.getUserID());//----------------
+                    bool = userBO.delete(userDTO.getUserID());
                 }
                 if (bool && userBO.delete(userIDTxt.getText())) {
 
@@ -219,7 +212,7 @@ public class UserPrivilegesController {
     public void delete(MouseEvent mouseEvent) {
 
         try {
-            List<UserDTO> all = userBO.findAll();//==============================================
+            List<UserDTO> all = userBO.findAll();
             all.removeIf(userDTO -> !userDTO.getUserID().equals(userIDTxt.getText()));
 
 
@@ -229,7 +222,7 @@ public class UserPrivilegesController {
             if (result.get() == ButtonType.OK) {
                 boolean bool = false;
                 for (UserDTO userDTO : all) {
-                    bool = userBO.delete(userDTO.getUserID());//----------------
+                    bool = userBO.delete(userDTO.getUserID());
                 }
                 if (bool && userBO.delete(userIDTxt.getText())) {
 
@@ -240,7 +233,6 @@ public class UserPrivilegesController {
 
                     loadUser();
                     UserTbl.refresh();
-
                 }
             }
         } catch (Exception ignored) {

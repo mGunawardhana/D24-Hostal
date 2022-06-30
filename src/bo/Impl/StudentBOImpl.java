@@ -1,17 +1,15 @@
 package bo.Impl;
 
 import bo.StudentBO;
-import controller.StudentRegFormController;
 import dao.DAOFactory;
 import dao.custom.StudentDAO;
-import dto.RoomDTO;
 import dto.StudentDTO;
-import entity.Room;
 import entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -20,23 +18,6 @@ import java.util.List;
 public class StudentBOImpl implements StudentBO {
 
     private final StudentDAO studentDAO = (StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
-    //============================================================================
-
-//    public void qtyCalc(boolean b) {
-//
-//        boolean bc = b;
-//
-//        Room r = new Room();
-//
-//        if (bc == true) {
-//            for (List<Student> list = r.getStudentList().) {
-//
-//            }
-//        }
-//
-//    }
-
-    //============================================================================
 
     @Override
     public boolean add(StudentDTO studentDTO) throws Exception {
@@ -56,7 +37,6 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public List<StudentDTO> findAll() throws Exception {
-//        return null;
         ArrayList<StudentDTO> studentDTOS = new ArrayList<>();
         List<Student> all = studentDAO.findAll();
         for (Student student : all) {
@@ -72,7 +52,6 @@ public class StudentBOImpl implements StudentBO {
                     student.getKeyMoney()
             ));
         }
-
         return studentDTOS;
     }
 
@@ -97,7 +76,7 @@ public class StudentBOImpl implements StudentBO {
         return studentDAO.delete(id);
     }
 
-    @Override//=================================================================
+    @Override
     public boolean update(StudentDTO customerDTO) throws Exception {
         return studentDAO.update(new Student(
                 customerDTO.getStudentID(),

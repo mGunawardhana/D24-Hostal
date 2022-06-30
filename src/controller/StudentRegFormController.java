@@ -1,7 +1,6 @@
 package controller;
 
 import bo.BOFactory;
-import bo.Impl.RoomBOImpl;
 import bo.ReserveBO;
 import bo.RoomBO;
 import bo.StudentBO;
@@ -15,8 +14,6 @@ import dao.custom.StudentDAO;
 import dto.ReserveDTO;
 import dto.RoomDTO;
 import dto.StudentDTO;
-import entity.Room;
-import entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,17 +44,15 @@ public class StudentRegFormController {
     private final RoomBO roomBO = (RoomBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.ROOM);
     private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);
 
-    private final ReserveDAO reserveDAO =(ReserveDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.RESERVE);
-    private final RoomDAO roomDAO =(RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);
-    private final StudentDAO studentDAO=(StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
-
-
+    private final ReserveDAO reserveDAO = (ReserveDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.RESERVE);
+    private final RoomDAO roomDAO = (RoomDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+    private final StudentDAO studentDAO = (StudentDAO) DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+    private final LinkedHashMap<TextField, Pattern> studentLHashmap = new LinkedHashMap<>();
     public AnchorPane contextStd;
     public TextField txtsName;
     public TextField txtAge;
     public TextField txtPhone;
     public TextField txtNIC;
-    
     public TextField key_money;
     public Label lbID;
     public JFXDatePicker dob;
@@ -71,7 +66,6 @@ public class StudentRegFormController {
     public AnchorPane btnClear;
     public JFXButton btnDelete;
     public TextField genderTxt;
-
     public TableView<StudentDTO> studentTBL;
     public TableColumn<StudentDTO, String> stuIdCol;
     public TableColumn<StudentDTO, String> AddressCol;
@@ -89,8 +83,6 @@ public class StudentRegFormController {
     public TextField txtAddress;
     int stRowNumber;
     ObservableList<StudentDTO> stObList = FXCollections.observableArrayList();
-    private final LinkedHashMap<TextField, Pattern> studentLHashmap = new LinkedHashMap<>();
-
 
     public void initialize() {
         stuIdCol.setCellValueFactory(new PropertyValueFactory<>("studentID"));
@@ -274,16 +266,11 @@ public class StudentRegFormController {
 
     public void loadStudents() throws Exception {
         List<RoomDTO> roomDTOList = roomBO.findAll();
-
         List<String> idList = new ArrayList<>();
-
-
         for (RoomDTO roomDTO : roomDTOList) {
             idList.add(roomDTO.getRoomID());
         }
-
         cmpProgram.getItems().addAll(idList);
-
     }
 
     public void setStudentID() throws SQLException, ClassNotFoundException {
@@ -320,7 +307,7 @@ public class StudentRegFormController {
                             lbRegDate.getText(),
                             Double.parseDouble(txtFee.getText()
 
-                    ));
+                            ));
                 } catch (SQLException | ClassNotFoundException throwables) {
                     throwables.printStackTrace();
                 }
@@ -410,9 +397,9 @@ public class StudentRegFormController {
                 for (ReserveDTO reserveDTO : all) {
                     bool = reserveBO.delete(reserveDTO.getId());//----------------
 
-                    RoomBO roomBO = new RoomBOImpl();
+//                    RoomBO roomBO = new RoomBOImpl();
                     RoomDTO roomDTO = roomBO.find(reserveDTO.getRID());
-                    roomDTO.setRoomQty(roomDTO.getRoomQty()+1);
+                    roomDTO.setRoomQty(roomDTO.getRoomQty() + 1);
                     roomBO.update(roomDTO);
 
                 }
@@ -424,13 +411,8 @@ public class StudentRegFormController {
                     alert2.show();
 
                     loadStudentTable();
-
-//                } else {
                 }
             }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         } catch (Exception ignored) {
         }
 
@@ -500,7 +482,7 @@ public class StudentRegFormController {
             try {
                 btnDelete.setDisable(false);
                 StudentDTO studentDTO = studentBO.find(txtID.getText());
-                List<ReserveDTO> reserveDTOS = reserveBO.findAll();//==========================
+                List<ReserveDTO> reserveDTOS = reserveBO.findAll();
                 if (studentDTO != null) {
                     txtsName.setText(studentDTO.getName());
                     txtAge.setText(String.valueOf(studentDTO.getAge()));
@@ -511,8 +493,6 @@ public class StudentRegFormController {
                     genderTxt.setText(studentDTO.getGender());
                     key_money.setText(Double.toString(studentDTO.getKeyMoney()));
                     lbsID.setText(studentDTO.getStudentID());
-
-                    //=======================================================================
 
                     List<RoomDTO> all = roomBO.findAll();
 
@@ -543,5 +523,4 @@ public class StudentRegFormController {
             }
         }
     }
-
 }

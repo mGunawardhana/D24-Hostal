@@ -21,10 +21,6 @@ import java.util.List;
  * what's app - 071 - 9043372
  */
 
-/*
- * TODO - > add RegX
- *  */
-
 public class LoginPageFormController {
     private final UserBO userBO = (UserBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.USER);
     public TextField txtName;
@@ -55,14 +51,8 @@ public class LoginPageFormController {
         view.setFitHeight(30);
         view.setFitWidth(30);
         lblHide.setGraphic(view);
-//
-//        txtPwd.setPromptText(txtPwd.getText());
-//        txtPwd.setVisible(true);
-//        txtPwd.setText("");
-//
-//        txtPwd.requestFocus();
 
-        txtPwd.setStyle("-fx-background-color:#3742fa ");
+        txtPwd.setStyle("-fx-background-color:black");
         txtPwd.setPromptText(txtPwd.getText());
         txtPwd.setText("");
         txtPwd.setDisable(true);
@@ -79,19 +69,10 @@ public class LoginPageFormController {
         view.setFitWidth(30);
         lblHide.setGraphic(view);
 
-
         txtPwd .setText(txtPwd.getPromptText());
         txtPwd.setPromptText("");
         txtPwd.setDisable(false);
         txtPwd.setStyle("-fx-control-inner-background:#ffffff ");
-
-//        txtPwd.setText(txtPwd.getPromptText());
-//        txtPwd.setPromptText("");
-//        txtPwd.setDisable(false);
-
     }
-
-
-
 }
 

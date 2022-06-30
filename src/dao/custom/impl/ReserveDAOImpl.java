@@ -84,8 +84,6 @@ public class ReserveDAOImpl implements ReserveDAO {
         transaction.commit();
 
         session.close();
-//      System.out.println(list.get(0).getId());
-
         return list;
     }
 
@@ -127,9 +125,6 @@ public class ReserveDAOImpl implements ReserveDAO {
         Query query = session.createQuery("FROM Reserve p WHERE p.sID=:id");
         query.setParameter("id", sid);
         List<Reserve> list = query.list();
-        /*List<ProgramData> list=new ArrayList<>();
-        ProgramData programData = session.get(ProgramData.class, sid);
-        list.add(programData);*/
 
         transaction.commit();
 

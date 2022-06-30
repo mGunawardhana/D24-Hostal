@@ -9,6 +9,7 @@ import util.FactoryConfiguration;
 
 import java.sql.SQLException;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -30,47 +31,23 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public boolean update(Room entity) throws Exception {
-//        boolean bool = false;
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-//
-//        Query query = session.createQuery("UPDATE room SET roomQty=:roomQty,monthlyRent=:monthlyRent WHERE roomID=:roomID");
-//
-////=================================================================
-//        query.setParameter("roomQty", entity.getRoomQty());
-//        query.setParameter("monthlyRent", entity.getMonthlyRent());
-//        query.setParameter("roomID", entity.getRoomID());
-//
-//        if (query.executeUpdate() > 0) {
-//            bool = true;
-//        }
-
         session.update(entity);
-
 
         transaction.commit();
         session.close();
-//        return bool;
         return true;
     }
 
     @Override
     public boolean delete(String s) throws Exception {
-//        boolean bool = false;
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-//        Query query = session.createQuery("DELETE FROM room WHERE roomID=:id");
-
-//        query.setParameter("id", s);
-//
-//        if (query.executeUpdate() > 0) {
-//            bool = true;
-//        }
-        Room room = session.load(Room.class,s);
+        Room room = session.load(Room.class, s);
         session.remove(room);
-
 
         transaction.commit();
         session.close();
@@ -85,7 +62,6 @@ public class RoomDAOImpl implements RoomDAO {
         Room room = session.get(Room.class, s);
 
         transaction.commit();
-
         session.close();
         return room;
     }
@@ -94,13 +70,11 @@ public class RoomDAOImpl implements RoomDAO {
     public List<Room> findAll() throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-
         Query program = session.createQuery("FROM room");
 
         List<Room> list = program.list();
 
         transaction.commit();
-
         session.close();
         return list;
     }

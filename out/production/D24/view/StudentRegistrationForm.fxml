@@ -83,7 +83,7 @@
             <Font name="Arial Bold" size="23.0" />
          </font>
       </Label>
-      <JFXDatePicker fx:id="dob" defaultColor="#534f4b" layoutX="248.0" layoutY="211.0" prefHeight="31.0" prefWidth="136.0" promptText="Date of BIrth" />
+      <JFXDatePicker fx:id="dob" defaultColor="#34495e" layoutX="248.0" layoutY="211.0" prefHeight="31.0" prefWidth="136.0" promptText="Date of BIrth" />
       <JFXComboBox fx:id="cmpProgram" layoutX="525.0" layoutY="195.0" prefHeight="25.0" prefWidth="156.0" promptText="Room" />
       <Label layoutX="571.0" layoutY="240.0" text="Room Qty - " textFill="#a760ff">
          <font>

@@ -1,17 +1,15 @@
 package bo.Impl;
 
 import bo.RoomBO;
-import controller.StudentRegFormController;
 import dao.DAOFactory;
-import dao.custom.ReserveDAO;
 import dao.custom.RoomDAO;
-import dao.custom.impl.RoomDAOImpl;
 import dto.RoomDTO;
 import entity.Room;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -26,7 +24,7 @@ public class RoomBOImpl implements RoomBO {
         return roomDAO.add(new Room(
                 roomDTO.getRoomID(),
                 roomDTO.getRoomType(),
-                roomDTO.getRoomQty(),//============================================================
+                roomDTO.getRoomQty(),
                 roomDTO.getMonthlyRent()
         ));
 
@@ -40,41 +38,27 @@ public class RoomBOImpl implements RoomBO {
             roomDTOS.add(new RoomDTO(
                     room.getRoomID(),
                     room.getRoomType(),
-                    room.getRoomQty(),//============================================================
+                    room.getRoomQty(),
                     room.getMonthlyRent()
             ));
         }
-
         return roomDTOS;
     }
 
     @Override
     public RoomDTO find(String id) throws Exception {
-        RoomDAO r1 = new RoomDAOImpl();
-        Room r2 = r1.find(id);
+        Room r2 = roomDAO.find(id);
         return new RoomDTO(
                 r2.getRoomID(),
                 r2.getRoomType(),
-                r2.getRoomQty(),//============================================================
+                r2.getRoomQty(),
                 r2.getMonthlyRent()
         );
-
-
-//        return null;
     }
 
     @Override
     public boolean delete(String id) throws Exception {
         return roomDAO.delete(id);
-
-
-//        return roomDAO.update(new Room(
-//                roomDTO.getRoomID(),
-//                roomDTO.getRoomType(),
-//                roomDTO.getRoomQty(),
-//                roomDTO.getMonthlyRent()
-////
-//        ));
     }
 
     @Override
@@ -82,9 +66,8 @@ public class RoomBOImpl implements RoomBO {
         return roomDAO.update(new Room(
                 roomDTO.getRoomID(),
                 roomDTO.getRoomType(),
-                roomDTO.getRoomQty(),//============================================================
+                roomDTO.getRoomQty(),
                 roomDTO.getMonthlyRent()
-//
         ));
     }
 

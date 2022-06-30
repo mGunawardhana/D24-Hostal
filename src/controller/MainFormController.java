@@ -14,9 +14,6 @@ import java.io.IOException;
  * what's app - 071 - 9043372
  */
 
-/*
- * TODO - > add RegX
- *  */
 
 public class MainFormController {
     public AnchorPane context;

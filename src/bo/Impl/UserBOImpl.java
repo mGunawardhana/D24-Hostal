@@ -8,6 +8,7 @@ import entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -35,7 +36,6 @@ public class UserBOImpl implements UserBO {
                     user.getUserID(), user.getUserName(), user.getPassword()
             ));
         }
-
         return userDTOS;
     }
 

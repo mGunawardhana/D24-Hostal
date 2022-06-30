@@ -22,12 +22,6 @@ import java.util.List;
  * what's app - 071 - 9043372
  */
 
-/*
- * TODO - > add RegX
- *  */
-
-
-
 public class ReserveViewFormController {
 
     private final ReserveBO reserveBO = (ReserveBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.RESERVE);

@@ -23,6 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
 /*
  * Developed by - mGunawardhana
  * Contact email - mrgunawardhana27368@gmail.com
@@ -100,18 +101,10 @@ public class RoomsFormController {
     }
 
     private void validation_Detail_Checked_Room() {
-        roomLHashmap.put(txtName, Pattern.compile("^[A-z]{3,10}$"));
+        roomLHashmap.put(txtName, Pattern.compile("^(((Non-AC)|(Non-AC/Food)|(AC)|(AC/Food)|([A-z]{2,20})))$"));
         roomLHashmap.put(txtDuration, Pattern.compile("^[0-9]{1,20}$"));
-        roomLHashmap.put(txtFee, Pattern.compile("^([0-9]{4,10})$"));
+        roomLHashmap.put(txtFee, Pattern.compile("^([0-9]{2,10})$"));
     }
-
-
-
-
-
-
-
-
 
     public void validate(KeyCode keyCode, TextField txt, String regex, TextField txtNow) {
         if (keyCode == KeyCode.ENTER) {
@@ -128,7 +121,7 @@ public class RoomsFormController {
         for (RoomDTO roomDTO : all) {
             if (roomDTO.getRoomID().equals(programID)) {
                 txtName.setText(roomDTO.getRoomType());
-                txtDuration.setText(String.valueOf(roomDTO.getRoomQty()));//***************************************
+                txtDuration.setText(String.valueOf(roomDTO.getRoomQty()));
                 txtFee.setText(String.valueOf(roomDTO.getMonthlyRent()));
                 lbID.setText(roomDTO.getRoomID());
             }
@@ -146,7 +139,6 @@ public class RoomsFormController {
     public void loadTable() throws Exception {
         obList.clear();
         List<RoomDTO> all = roomBO.findAll();
-
         for (RoomDTO roomDTO : all) {
             obList.add(roomDTO);
         }
@@ -160,7 +152,7 @@ public class RoomsFormController {
             RoomDTO roomDTO = new RoomDTO(
                     lbID.getText(),
                     txtName.getText(),
-                    Integer.parseInt(txtDuration.getText()),//********************************************************
+                    Integer.parseInt(txtDuration.getText()),
                     Double.parseDouble(txtFee.getText()));
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -244,9 +236,6 @@ public class RoomsFormController {
 
             if (result.get() == ButtonType.OK) {
                 boolean bool = true;
-                for (ReserveDTO reserveDTO : all) {
-//                    bool = reserveBO.delete(reserveDTO.getId());
-                }
                 if (bool && roomBO.delete(lbID.getText())) {
 
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
@@ -261,7 +250,6 @@ public class RoomsFormController {
                     new Alert(Alert.AlertType.WARNING, "Try Again..").show();
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
