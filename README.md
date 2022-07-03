@@ -14,7 +14,7 @@
 
 ![Screenshot (984)](https://user-images.githubusercontent.com/100486080/176251338-f9805bf3-3591-4c1d-9cc3-25f909eea498.png)
 
-![Screenshot (1006)](https://user-images.githubusercontent.com/100486080/177034637-9d2b0835-b4d7-4702-a87b-d5693f2c2622.png)
+
 
 
 <br><h3> 🤟Another Options in D24  -----------------------------------------------------</h3><br>
@@ -28,5 +28,9 @@
  * Validation available in every detail catching form - using Reg x
   
 If you hava any bugs or issues , If you want to explain my code or if you need help to develop your projects pleace contact me on :point_right: <br> whats app -* 071 9043372  :hugs:
+
+Result in this Project - 
+![Screenshot (1006)](https://user-images.githubusercontent.com/100486080/177034637-9d2b0835-b4d7-4702-a87b-d5693f2c2622.png)
+
   
                                         😋 If you think my code is good pleace drop a star. 😋
