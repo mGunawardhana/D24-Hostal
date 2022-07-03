@@ -14,10 +14,13 @@
 
 ![Screenshot (984)](https://user-images.githubusercontent.com/100486080/176251338-f9805bf3-3591-4c1d-9cc3-25f909eea498.png)
 
+![Screenshot (1006)](https://user-images.githubusercontent.com/100486080/177034637-9d2b0835-b4d7-4702-a87b-d5693f2c2622.png)
+
 
 <br><h3> 🤟Another Options in D24  -----------------------------------------------------</h3><br>
 
 **Used Languages - Java , CSS , HQL** <br>
+
 
  * Used technology - hibernate <br>
  * User friendly UI design.<br>
